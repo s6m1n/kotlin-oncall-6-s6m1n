@@ -7,7 +7,7 @@ import java.util.*
 class CalenderBuilder(
     private val dateInfo: Pair<Int, String>
 ) {
-    private val calender = mutableMapOf<String, Boolean>() // 날짜 정보와 휴일 여부
+    private val calender = mutableListOf<Pair<String, Boolean>>() // 날짜 정보와 휴일 여부
     private val dayQueue: Queue<String> = LinkedList(listOf("월", "화", "수", "목", "금", "토", "일"))
 
     init {
@@ -25,7 +25,7 @@ class CalenderBuilder(
         dayQueue.add(dayQueue.poll())
     }
 
-    fun make(): MutableMap<String, Boolean> {
+    fun make(): MutableList<Pair<String, Boolean>> {
         val month = dateInfo.first.toMonth()
         for (date in 1..getEndDate(month)) {
             setWeekDay(date, month)
@@ -40,10 +40,10 @@ class CalenderBuilder(
                 if (!isWeekend(todayDay)) {
                     todayDay = todayDay + "(휴일)"
                 }
-                calender.put("${month.value}월 ${date}일 ${todayDay}", true)
+                calender.add(Pair("${month.value}월 ${date}일 ${todayDay}", true))
             }
 
-            false -> calender.put("${month.value}월 ${date}일 ${todayDay}", false)
+            false -> calender.add(Pair("${month.value}월 ${date}일 ${todayDay}", false))
         }
         rotateQueue()
     }

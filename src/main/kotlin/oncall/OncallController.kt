@@ -17,22 +17,15 @@ class OncallController(
         outputView.inputWeekendMessage()
         val weekendNames = getValidNames()
 
-        println("월, 시작 요일: ${dateInfo}")
-        println("평일 근무자: $weekdayNames")
-        println("휴일 근무자: $weekendNames")
-
         val calenderBuilder = CalenderBuilder(dateInfo)
         val calender = calenderBuilder.make()
 
         val workScheduler = WorkScheduler(calender, LinkedList(weekdayNames), LinkedList(weekendNames))
-        val result = workScheduler.make()
+        val result = workScheduler.get()
 
-//        val sortedMap = result.toList().sortedBy { (key, _) -> key }.toMap()
-        for ((key, value) in result) {
-            println("$key $value")
+        for ((index, name) in result.withIndex()) {
+            println("${calender[index].first} $name")
         }
-
-
     }
 
     private fun getValidNames(): List<String> {
