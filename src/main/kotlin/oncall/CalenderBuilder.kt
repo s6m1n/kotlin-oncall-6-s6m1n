@@ -38,12 +38,12 @@ class CalenderBuilder(
     fun make(): MutableList<Pair<String, Boolean>> {
         val month = dateInfo.first.toMonth()
         for (date in 1..getEndDate(month)) {
-            setWeekDay(date, month)
+            setHoliday(date, month)
         }
         return calender
     }
 
-    private fun setWeekDay(date: Int, month: Month) {
+    private fun setHoliday(date: Int, month: Month) {
         var todayDay = dayQueue.peek()
         when (isHoliday(month, date, todayDay)) {
             true -> {
