@@ -20,16 +20,13 @@ class WorkScheduler(
                 true -> setSchedule(result[index], weekendWorkersQueue, weekendWaitingList)
             }
         }
-        return result.subList(1,result.size)
+        return result.subList(1, result.size)
     }
 
     private fun setSchedule(yesterdayWorker: String, targetQueue: Queue<String>, targetWaitingList: Queue<String>) {
         val todayWorker = targetQueue.peek()
         if (yesterdayWorker == todayWorker) {
-            targetWaitingList.add(todayWorker)
-            rotateQueue(targetQueue)
-            result.add(targetQueue.peek())
-            rotateQueue(targetQueue)
+            switchOrder(targetWaitingList, todayWorker, targetQueue)
         } else if (targetWaitingList.size != 0) {
             result.add(targetWaitingList.poll())
         } else {
@@ -37,7 +34,14 @@ class WorkScheduler(
             rotateQueue(targetQueue)
         }
     }
-    
+
+    private fun switchOrder(targetWaitingList: Queue<String>, todayWorker: String, targetQueue: Queue<String>) {
+        targetWaitingList.add(todayWorker)
+        rotateQueue(targetQueue)
+        result.add(targetQueue.peek())
+        rotateQueue(targetQueue)
+    }
+
     private fun rotateQueue(queue: Queue<String>) {
         queue.add(queue.poll())
     }
