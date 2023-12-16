@@ -2,7 +2,7 @@ package oncall
 
 enum class Month(val value: Int, val holiday: List<Int?>) {
     JANUARY(1, listOf(1)),
-    FEBRURARY(2, listOf()),
+    FEBRUARY(2, listOf()),
     MARCH(3, listOf(1)),
     APRIL(4, listOf()),
     MAY(5, listOf(5)),
@@ -18,7 +18,7 @@ enum class Month(val value: Int, val holiday: List<Int?>) {
         fun Int.toMonth(): Month {
             return when (this) {
                 JANUARY.value -> JANUARY
-                FEBRURARY.value -> FEBRURARY
+                FEBRUARY.value -> FEBRUARY
                 MARCH.value -> MARCH
                 APRIL.value -> APRIL
                 MAY.value -> MAY
@@ -29,7 +29,7 @@ enum class Month(val value: Int, val holiday: List<Int?>) {
                 OCTOBER.value -> OCTOBER
                 NOVEMBER.value -> NOVEMBER
                 DECEMBER.value -> DECEMBER
-                else -> throw IllegalArgumentException("[ERROR] Month로 변환할 수 없습니다")
+                else -> throw IllegalArgumentException(INVALID_MONTH)
             }
         }
 
@@ -38,8 +38,10 @@ enum class Month(val value: Int, val holiday: List<Int?>) {
                 1, 3, 5, 7, 8, 10, 12 -> 31
                 4, 6, 9, 11 -> 30
                 2 -> 28
-                else -> throw IllegalArgumentException("[ERROR] 유효한 월(1-12)을 입력해주세요.")
+                else -> throw IllegalArgumentException(INVALID_MONTH)
             }
         }
+
+        const val INVALID_MONTH = "[ERROR] 유효한 월이 아닙니다."
     }
 }

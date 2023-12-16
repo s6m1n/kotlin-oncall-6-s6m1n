@@ -23,7 +23,7 @@ class OncallController(
         val workScheduler = WorkScheduler(calender, LinkedList(weekdayNames), LinkedList(weekendNames))
         val result = workScheduler.get()
 
-        outputView.printWorkSchedule(calender.map { it.first },result)
+        outputView.printWorkSchedule(calender.map { it.first }, result)
 
     }
 

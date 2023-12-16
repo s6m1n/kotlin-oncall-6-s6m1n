@@ -8,7 +8,17 @@ class CalenderBuilder(
     private val dateInfo: Pair<Int, String>
 ) {
     private val calender = mutableListOf<Pair<String, Boolean>>() // 날짜 정보와 휴일 여부
-    private val dayQueue: Queue<String> = LinkedList(listOf("월", "화", "수", "목", "금", "토", "일"))
+    private val dayQueue: Queue<String> = LinkedList(
+        listOf(
+            MONDAY,
+            TUESDAY,
+            WEDNESDAY,
+            THURSDAY,
+            FRIDAY,
+            SATURDAY,
+            SUNDAY
+        )
+    )
 
     init {
         initDayQueue(dateInfo.second)
@@ -35,24 +45,35 @@ class CalenderBuilder(
 
     private fun setWeekDay(date: Int, month: Month) {
         var todayDay = dayQueue.peek()
-        when (isHolyday(month, date, todayDay)) {
+        when (isHoliday(month, date, todayDay)) {
             true -> {
-                if (!isWeekend(todayDay)) {
-                    todayDay = todayDay + "(휴일)"
-                }
-                calender.add(Pair("${month.value}월 ${date}일 ${todayDay}", true))
+                if (!isWeekend(todayDay)) todayDay += WEEKDAY_HOLIDAY_MARK
+                calender.add(Pair(CALENDER_INFO_TEMPLATE.format(month.value, date, todayDay), true))
             }
 
-            false -> calender.add(Pair("${month.value}월 ${date}일 ${todayDay}", false))
+            false -> calender.add(Pair(CALENDER_INFO_TEMPLATE.format(month.value, date, todayDay), false))
         }
         rotateQueue()
     }
 
     private fun isWeekend(todayDay: String): Boolean {
-        return listOf("토", "일").contains(todayDay)
+        return listOf(SATURDAY, SUNDAY).contains(todayDay)
     }
 
-    private fun isHolyday(month: Month, date: Int, todayDay: String): Boolean {
-        return (month.holiday.contains(date) || listOf("토", "일").contains(todayDay))
+    private fun isHoliday(month: Month, date: Int, todayDay: String): Boolean {
+        return (month.holiday.contains(date) || listOf(SATURDAY, SUNDAY).contains(todayDay))
+    }
+
+    companion object {
+        const val WEEKDAY_HOLIDAY_MARK = "(휴일)"
+        const val CALENDER_INFO_TEMPLATE = "%s월 %s일 %s"
+
+        const val MONDAY = "월"
+        const val TUESDAY = "화"
+        const val WEDNESDAY = "수"
+        const val THURSDAY = "목"
+        const val FRIDAY = "금"
+        const val SATURDAY = "토"
+        const val SUNDAY = "일"
     }
 }

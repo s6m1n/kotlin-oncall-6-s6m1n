@@ -1,6 +1,7 @@
 package oncall
 
 import camp.nextstep.edu.missionutils.Console
+import oncall.Validator.INVALID_INPUT
 import oncall.Validator.validateDay
 import oncall.Validator.validateElementLength
 import oncall.Validator.validateIsDigit
@@ -13,22 +14,26 @@ class InputView {
 
     fun readValidMonthAndDay(): Pair<Int, String> {
         try {
-            val (month, day) = Console.readLine().split(",")
+            val (month, day) = Console.readLine().split(SPLITTER)
             validateIsDigit(month)
             validateNumRange(month.toInt())
             validateDay(day)
             validateLength(day)
             return Pair(month.toInt(), day)
         } catch (e: IndexOutOfBoundsException) {
-            throw IllegalArgumentException("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.")
+            throw IllegalArgumentException(INVALID_INPUT)
         }
     }
 
     fun readValidNames(): List<String> {
-        val input = Console.readLine().split(",")
+        val input = Console.readLine().split(SPLITTER)
         validateElementLength(input)
         validateSize(input)
         validateNotDuplicated(input)
         return input
+    }
+
+    companion object {
+        const val SPLITTER = ","
     }
 }
