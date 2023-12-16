@@ -56,12 +56,12 @@ class CalenderBuilder(
         rotateQueue()
     }
 
-    private fun isWeekend(todayDay: String): Boolean {
-        return listOf(SATURDAY, SUNDAY).contains(todayDay)
-    }
-
     private fun isHoliday(month: Month, date: Int, todayDay: String): Boolean {
         return (month.holiday.contains(date) || listOf(SATURDAY, SUNDAY).contains(todayDay))
+    }
+
+    private fun isWeekend(todayDay: String): Boolean {
+        return listOf(SATURDAY, SUNDAY).contains(todayDay)
     }
 
     companion object {
