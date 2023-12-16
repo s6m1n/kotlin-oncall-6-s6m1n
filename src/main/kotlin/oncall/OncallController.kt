@@ -7,7 +7,18 @@ class OncallController(
     fun start() {
         outputView.inputMonthAndDayMessage()
         val dateInfo = getValidMonthAndDay()
-        println(dateInfo.toString())
+        outputView.inputWeekDayMessage()
+        val names = getValidNames()
+        println(names.toString())
+    }
+
+    private fun getValidNames(): Any {
+        return try {
+            inputView.readValidNames()
+        }catch  (error: IllegalArgumentException) {
+            println(error.message)
+            getValidNames()
+        }
     }
 
     private fun getValidMonthAndDay(): Pair<Int, String> {
