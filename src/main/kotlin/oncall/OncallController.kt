@@ -23,9 +23,8 @@ class OncallController(
         val workScheduler = WorkScheduler(calender, LinkedList(weekdayNames), LinkedList(weekendNames))
         val result = workScheduler.get()
 
-        for ((index, name) in result.withIndex()) {
-            println("${calender[index].first} $name")
-        }
+        outputView.printWorkSchedule(calender.map { it.first },result)
+
     }
 
     private fun getValidNames(): List<String> {
