@@ -7,9 +7,16 @@ class OncallController(
     fun start() {
         outputView.inputMonthAndDayMessage()
         val dateInfo = getValidMonthAndDay()
-        outputView.inputWeekDayMessage()
-        val names = getValidNames()
-        println(names.toString())
+
+        outputView.inputWeekdayMessage()
+        val weekdayNames = getValidNames()
+
+        outputView.inputWeekendMessage()
+        val weekendNames = getValidNames()
+
+        println("월, 시작 요일: ${dateInfo}")
+        println("평일 근무자: $weekdayNames")
+        println("휴일 근무자: $weekendNames")
     }
 
     private fun getValidNames(): Any {
