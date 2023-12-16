@@ -1,4 +1,4 @@
-package oncall
+package oncall.view
 
 class OutputView {
     fun inputMonthAndDayMessage() {

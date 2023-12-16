@@ -1,5 +1,9 @@
-package oncall
+package oncall.controller
 
+import oncall.model.CalenderBuilder
+import oncall.view.InputView
+import oncall.view.OutputView
+import oncall.model.WorkScheduler
 import java.util.*
 
 class OncallController(

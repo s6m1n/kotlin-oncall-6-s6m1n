@@ -1,7 +1,7 @@
-package oncall
+package oncall.model
 
-import oncall.Month.Companion.getEndDate
-import oncall.Month.Companion.toMonth
+import oncall.model.Month.Companion.getEndDate
+import oncall.model.Month.Companion.toMonth
 import java.util.*
 
 class CalenderBuilder(

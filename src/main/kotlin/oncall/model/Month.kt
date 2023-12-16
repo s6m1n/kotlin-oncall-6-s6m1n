@@ -1,4 +1,4 @@
-package oncall
+package oncall.model
 
 enum class Month(val value: Int, val holiday: List<Int?>) {
     JANUARY(1, listOf(1)),

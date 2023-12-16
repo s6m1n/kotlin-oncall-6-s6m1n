@@ -1,14 +1,14 @@
-package oncall
+package oncall.view
 
 import camp.nextstep.edu.missionutils.Console
-import oncall.Validator.INVALID_INPUT
-import oncall.Validator.validateDay
-import oncall.Validator.validateElementLength
-import oncall.Validator.validateIsDigit
-import oncall.Validator.validateLength
-import oncall.Validator.validateNotDuplicated
-import oncall.Validator.validateNumRange
-import oncall.Validator.validateSize
+import oncall.util.Validator.INVALID_INPUT
+import oncall.util.Validator.validateDay
+import oncall.util.Validator.validateElementLength
+import oncall.util.Validator.validateIsDigit
+import oncall.util.Validator.validateLength
+import oncall.util.Validator.validateNotDuplicated
+import oncall.util.Validator.validateNumRange
+import oncall.util.Validator.validateSize
 
 class InputView {
 

@@ -1,4 +1,4 @@
-package oncall
+package oncall.model
 
 import java.util.*
 
@@ -23,15 +23,15 @@ class WorkScheduler(
         return result.subList(1,result.size)
     }
 
-    private fun setSchedule(yesterdayWorker: String, targetQueue: Queue<String>, targetWatingList: Queue<String>) {
+    private fun setSchedule(yesterdayWorker: String, targetQueue: Queue<String>, targetWaitingList: Queue<String>) {
         val todayWorker = targetQueue.peek()
         if (yesterdayWorker == todayWorker) {
-            targetWatingList.add(todayWorker)
+            targetWaitingList.add(todayWorker)
             rotateQueue(targetQueue)
             result.add(targetQueue.peek())
             rotateQueue(targetQueue)
-        } else if (targetWatingList.size != 0) {
-            result.add(targetWatingList.poll())
+        } else if (targetWaitingList.size != 0) {
+            result.add(targetWaitingList.poll())
         } else {
             result.add(targetQueue.peek())
             rotateQueue(targetQueue)

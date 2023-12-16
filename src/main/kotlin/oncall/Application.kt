@@ -1,18 +1,7 @@
 package oncall
 
+import oncall.controller.OncallController
+
 fun main() {
     OncallController().start()
 }
-
-/*
-
-5,월
-준팍,도밥,고니,수아,루루,글로,솔로스타,우코,슬링키,참새,도리
-수아,루루,글로,솔로스타,우코,슬링키,참새,도리,준팍,도밥,고니
-
-10,수
-1,2,3,4,5,6,7,8,9,10,11
-1_,2_,3_,4_,5_,6_,7_,8_,9_,10_,11_
-
-
-*/
