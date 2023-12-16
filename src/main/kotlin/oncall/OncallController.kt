@@ -1,5 +1,7 @@
 package oncall
 
+import java.util.*
+
 class OncallController(
     private val inputView: InputView = InputView(),
     private val outputView: OutputView = OutputView()
@@ -21,6 +23,16 @@ class OncallController(
 
         val calenderBuilder = CalenderBuilder(dateInfo)
         val calender = calenderBuilder.make()
+
+        val workScheduler = WorkScheduler(calender, LinkedList(weekdayNames), LinkedList(weekendNames))
+        val result = workScheduler.make()
+
+//        val sortedMap = result.toList().sortedBy { (key, _) -> key }.toMap()
+        for ((key, value) in result) {
+            println("$key $value")
+        }
+
+
     }
 
     private fun getValidNames(): List<String> {
